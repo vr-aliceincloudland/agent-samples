@@ -100,7 +100,7 @@ class AgentTools:
             source_info = "the provided manuals"
 
         system_prompt = (
-            f"You are a Heavy Machinery Maintenance Expert. Use the following information from {source_info} "
+            f"You are a Tractor Repair and Maintenance Expert. Use the following information from {source_info} "
             "to help the onsite technician fix the machine. If the answer is not in "
             "the provided information, tell them you do not know. Emphasize safety protocols.\n\n"
             f"Context:\n{context}"
