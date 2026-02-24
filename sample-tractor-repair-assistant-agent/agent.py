@@ -9,6 +9,8 @@ from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_core.messages import HumanMessage
 from langgraph.graph import StateGraph, END
 from tools import AgentState, AgentTools
+from langfuse import get_client
+from langfuse.langchain import CallbackHandler
 
 
 load_dotenv() # For loading environment variables from a .env file
@@ -29,7 +31,17 @@ DB_PASSWORD = os.getenv('DB_PASSWORD')
 DB_DSN = os.getenv('DB_DSN')
 WALLET_DIR = os.getenv('WALLET_DIR')
 
-print(f"OPENAI_API_KEY: {OPENAI_API_KEY}")
+# Initialize Langfuse client
+langfuse = get_client()
+
+# Verify LangFuse connection
+if langfuse.auth_check():
+    print("Langfuse client is authenticated and ready!")
+else:
+    print("Authentication failed. Please check your credentials and host.")
+ 
+# Initialize Langfuse CallbackHandler for Langchain (tracing)
+langfuse_handler = CallbackHandler()
 
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 os.environ["TAVILY_API_KEY"] = TAVILY_API_KEY
@@ -75,7 +87,7 @@ workflow.add_conditional_edges(
 workflow.add_edge("web_search", "generate")
 workflow.add_edge("generate", END)
 
-app = workflow.compile()
+app = workflow.compile().with_config({"callbacks": [langfuse_handler]})
 
 # --- Run the Agent ---
 if __name__ == "__main__":
