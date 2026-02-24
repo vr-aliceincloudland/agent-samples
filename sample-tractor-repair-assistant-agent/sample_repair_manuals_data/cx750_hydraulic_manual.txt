@@ -1,0 +1,12 @@
+Tractor Model: CX-750 Heavy Duty
+System: Hydraulic Pump System
+Topic: Troubleshooting Low Hydraulic Pressure
+
+1. System Overview: The CX-750 utilizes a variable-displacement axial piston pump. Normal operating pressure is 2,800 PSI. 
+2. Safety Protocol: Before inspecting the hydraulic system, ensure the engine is off, the parking brake is engaged, and all hydraulic pressure is relieved by cycling the control levers. Wear safety goggles and heavy-duty gloves.
+3. Symptoms of Low Pressure: Sluggish implement response, whining noise from the pump, or failure to lift heavy loads.
+4. Troubleshooting Steps:
+   a. Check Hydraulic Fluid Level: Ensure the fluid is visible in the sight glass. If low, add AW-46 hydraulic fluid.
+   b. Inspect the Suction Filter: A clogged suction filter (Part # HF-409) will starve the pump. Replace if debris is present.
+   c. Check for Leaks: Inspect the main pressure line running from the pump to the control valve manifold.
+   d. Pressure Relief Valve: If the pump sounds fine but pressure is low, the main pressure relief valve (Part # PRV-12) may be stuck open. Remove, clean with solvent, and reinstall. Torque to 45 ft-lbs.

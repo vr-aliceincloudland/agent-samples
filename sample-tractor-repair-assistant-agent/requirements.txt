@@ -1,0 +1,16 @@
+oracledb
+langchain
+langchain-community
+langchain-openai
+langchain-oracledb
+langchain-text-splitters
+langgraph
+tiktoken
+python-dotenv
+tavily-python
+lark
+langchain-tavily
+pydantic
+python-dotenv
+fastapi
+uvicorn
