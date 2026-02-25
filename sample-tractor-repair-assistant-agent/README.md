@@ -8,6 +8,9 @@ The agent is built using LangChain, LangGraph, OpenAI, and Oracle 26ai Database.
 
 The agent's logic is orchestrated by a graph built with LangGraph. The flow is as follows:
 
+<img width="227" height="472" alt="image" src="https://github.com/user-attachments/assets/0c711127-bc04-49f0-b571-10331b186cec" />
+
+
 1.  **Retrieve**: When a user asks a question, the agent first retrieves relevant documents from a pre-loaded collection of tractor repair manuals stored in an Oracle Vector Database.
 2.  **Grade Documents**: The retrieved documents are then passed to an LLM to check for relevance to the user's question. This step filters out erroneous or unhelpful retrievals.
 3.  **Conditional Routing**: Based on the relevance grade:
