@@ -15,3 +15,6 @@ python-dotenv
 fastapi
 uvicorn
 langfuse
+jinja2
+python-multipart
+langgraph-cli[inmem]

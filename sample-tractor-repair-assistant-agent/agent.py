@@ -16,20 +16,14 @@ from langfuse.langchain import CallbackHandler
 load_dotenv() # For loading environment variables from a .env file
 
 # --- Setup Credentials & DB Connection ---
-# It's recommended to use environment variables for credentials
-# OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "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")
-# TAVILY_API_KEY = os.environ.get("TAVILY_API_KEY", "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")
-# DB_USER = os.environ.get("DB_USER", "ADMIN")
-# DB_PASSWORD = os.environ.get("DB_PASSWORD", "ODBPass#123ODB")
-# DB_DSN = os.environ.get("DB_DSN", "mfgaidb_high")
-# WALLET_DIR = os.environ.get("WALLET_DIR", "/home/opc/oracle-demo/Wallet_mfgaidb")
-
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 TAVILY_API_KEY = os.getenv('TAVILY_API_KEY')
 DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
 DB_DSN = os.getenv('DB_DSN')
 WALLET_DIR = os.getenv('WALLET_DIR')
+
+print(f"OpenAI Key: {OPENAI_API_KEY}")
 
 # Initialize Langfuse client
 langfuse = get_client()
@@ -87,11 +81,11 @@ workflow.add_conditional_edges(
 workflow.add_edge("web_search", "generate")
 workflow.add_edge("generate", END)
 
-app = workflow.compile().with_config({"callbacks": [langfuse_handler]})
+app = workflow.compile()
 
 # --- Run the Agent ---
 if __name__ == "__main__":
-    print("Welcome to the CX-750 Heavy Machinery AI Assistant.")
+    print("Welcome to the Tractor Repair and Maintenance AI Assistant.")
     print("Type 'exit' to quit.\n")
     
     while True:
@@ -101,7 +95,9 @@ if __name__ == "__main__":
 
         inputs = {"messages": [HumanMessage(content=user_input)]}
         # Run the graph
-        for output in app.stream(inputs):
+        for output in app.stream(inputs, config={"callbacks": [langfuse_handler]}):
             for key, value in output.items():
                 if key == "generate":
                     print(f"\nAI Agent: {value['messages'][-1].content}\n")
+    
+    langfuse.shutdown()
