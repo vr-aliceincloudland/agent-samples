@@ -37,8 +37,8 @@ else:
 # Initialize Langfuse CallbackHandler for Langchain (tracing)
 langfuse_handler = CallbackHandler()
 
-os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
-os.environ["TAVILY_API_KEY"] = TAVILY_API_KEY
+# os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+# os.environ["TAVILY_API_KEY"] = TAVILY_API_KEY
 
 connection = oracledb.connect(
     user=DB_USER, password=DB_PASSWORD,

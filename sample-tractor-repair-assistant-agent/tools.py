@@ -3,23 +3,23 @@ from typing import Annotated, Sequence, TypedDict
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from langchain_core.retrievers import BaseRetriever
-from langchain_community.tools.tavily_search import TavilySearchResults
+from langchain_tavily import TavilySearch
+# from langchain_community.tools.tavily_search import TavilySearchResults
 from pydantic import BaseModel, Field
 
 
 class AgentState(TypedDict):
-    """The state of the agent."""
-
     messages: Annotated[Sequence[BaseMessage], "The messages in the conversation"]
     context: str
     relevance: str
+    content: str
 
 
 class AgentTools:
     """A class to hold the tools for the agent."""
 
     def __init__(
-        self, retriever: BaseRetriever, llm: BaseChatModel, web_search_tool: TavilySearchResults
+        self, retriever: BaseRetriever, llm: BaseChatModel, web_search_tool: TavilySearch
     ):
         self.retriever = retriever
         self.llm = llm
